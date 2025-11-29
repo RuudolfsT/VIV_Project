@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 434388907}
   - component: {fileID: 434388906}
   - component: {fileID: 434388905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 576946406}
   - component: {fileID: 576946405}
   - component: {fileID: 576946404}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1180,7 +1180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::XRayToggle
   xrayKey: 38
   objectHiddenFeature: {fileID: -471348245951452031, guid: 0a69a2ed50e3c864882ad828664c1bdd, type: 2}
-  objectVisibleFeature: {fileID: -5370873417126359881, guid: 0a69a2ed50e3c864882ad828664c1bdd, type: 2}
 --- !u!1 &1385405676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c759e78e672a89e488abc1affa2c99de, type: 3}
