@@ -1040,6 +1040,7 @@ GameObject:
   - component: {fileID: 1176030489}
   - component: {fileID: 1176030488}
   - component: {fileID: 1176030487}
+  - component: {fileID: 1176030490}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1165,6 +1166,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1176030490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176030485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64401d064107d05429fe5e744031fef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XRayToggle
+  xrayKey: 38
+  objectHiddenFeature: {fileID: -471348245951452031, guid: 0a69a2ed50e3c864882ad828664c1bdd, type: 2}
+  objectVisibleFeature: {fileID: -5370873417126359881, guid: 0a69a2ed50e3c864882ad828664c1bdd, type: 2}
 --- !u!1 &1385405676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c759e78e672a89e488abc1affa2c99de, type: 3}
@@ -1204,7 +1220,7 @@ GameObject:
   - component: {fileID: 1681274531}
   - component: {fileID: 1681274530}
   - component: {fileID: 1681274529}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1297,7 +1313,7 @@ Transform:
   m_GameObject: {fileID: 1681274528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.56, y: 1.24, z: -2.58463}
+  m_LocalPosition: {x: 13.56, y: 0.87, z: -2.58463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
