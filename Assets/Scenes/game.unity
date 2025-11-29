@@ -269,7 +269,7 @@ MonoBehaviour:
   roamDelay: 3
   keyToFollow: 38
   followDuration: 5
-  sightRange: 10
+  sightRange: 20
   followSpeed: 6
 --- !u!195 &434388906
 NavMeshAgent:

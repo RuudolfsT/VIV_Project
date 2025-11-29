@@ -27,7 +27,20 @@ public class AIMove : MonoBehaviour
 
     void Update()
     {
-        bool seesPlayer = target != null && Vector3.Distance(transform.position, target.position) <= sightRange;
+        bool seesPlayer = false;
+
+        if (target != null)
+        {
+            Vector3 direction = target.position - transform.position;
+            if (direction.magnitude <= sightRange)
+            {
+                // Raycast to see if something is blocking the view
+                if (!Physics.Raycast(transform.position + Vector3.up, direction.normalized, out RaycastHit hit, sightRange) || hit.transform == target)
+                {
+                    seesPlayer = true;
+                }
+            }
+        }
 
         // Key press to start following
         if (Keyboard.current[keyToFollow].wasPressedThisFrame)
