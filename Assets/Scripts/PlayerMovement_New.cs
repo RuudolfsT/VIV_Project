@@ -10,7 +10,7 @@ public class PlayerMovement_New : MonoBehaviour
     public float jumpHeight = 1.5f;
 
     public Transform GroundCheck;
-    public float groundDistance = 1f;
+    public float groundDistance = 0.5f;
     public LayerMask Ground;
 
     private Vector3 velocity;
@@ -54,10 +54,12 @@ public class PlayerMovement_New : MonoBehaviour
     void Update()
     {
         // Ground check
-        isGrounded = Physics.CheckSphere(GroundCheck.position, groundDistance, Ground);
+        isGrounded = Physics.Raycast(GroundCheck.position, Vector3.down, groundDistance, Ground);
 
         if (isGrounded && velocity.y < 0)
+        {
             velocity.y = -2f;
+        }
 
         // Movement
         Vector2 input = moveAction.ReadValue<Vector2>();
@@ -76,9 +78,13 @@ public class PlayerMovement_New : MonoBehaviour
 
         // Movement detection
         if (lastPosition != transform.position && isGrounded)
+        {
             isMoving = true;
+        }
         else
+        {
             isMoving = false;
+        }
 
         lastPosition = transform.position;
     }

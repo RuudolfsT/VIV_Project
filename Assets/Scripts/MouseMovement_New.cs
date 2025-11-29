@@ -9,7 +9,8 @@ public class MouseMovement_New : MonoBehaviour
 
     float xRotation = 0f;
     float yRotation = 0f;
-
+    public Transform playerBody; // assign the parent object (character)
+    public Transform playerCamera; // assign the camera
     private void OnEnable()
     {
         // Create and enable input action
@@ -36,6 +37,7 @@ public class MouseMovement_New : MonoBehaviour
 
         yRotation += mouseDelta.x;
 
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f); // X only
+        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // Y only
     }
 }
