@@ -759,8 +759,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1063312548}
   - component: {fileID: 1063312547}
-  - component: {fileID: 1063312546}
-  - component: {fileID: 1063312545}
+  - component: {fileID: 1063312550}
+  - component: {fileID: 1063312549}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -768,39 +768,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1063312545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063312544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c4143b2c05f674388e2254cce654f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 10
-  gravity: -20
-  jumpHeight: 1.5
-  GroundCheck: {fileID: 1991814547}
-  groundDistance: 1
-  Ground:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &1063312546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063312544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97fff819d4245344db692a1373ab6301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MouseMovement
-  mouseSensitivity: 500
 --- !u!143 &1063312547
 CharacterController:
   m_ObjectHideFlags: 0
@@ -844,6 +811,39 @@ Transform:
   - {fileID: 1991814547}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1063312549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063312544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fd6cfa2e98df546a2d49377001ad49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement_New
+  speed: 10
+  gravity: -20
+  jumpHeight: 1.5
+  GroundCheck: {fileID: 1991814547}
+  groundDistance: 1
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &1063312550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063312544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692f8a328a0a767448d137b368c608ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseMovement_New
+  mouseSensitivity: 35
 --- !u!1 &1176030485
 GameObject:
   m_ObjectHideFlags: 0
