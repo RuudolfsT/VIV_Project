@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 
 public class AIMove : MonoBehaviour
 {
-    public Transform target;             // Player to follow
-    public float roamRadius = 10f;       // Random roaming radius
-    public float roamDelay = 3f;         // Delay between random destinations
-    public Key keyToFollow = Key.X;      // Key to start following
-    public float followDuration = 5f;    // How long the AI follows after key press
-    public float sightRange = 10f;       // Distance at which AI can "see" the player
-    public float followSpeed = 6f;       // Speed when following player
+    public Transform target;
+    public float roamRadius = 10f;
+    public float roamDelay = 3f;
+    public Key keyToFollow = Key.X;
+    public float followDuration = 5f;
+    public float sightRange = 10f;
+    public float followSpeed = 6f;
 
     private NavMeshAgent agent;
     private bool isFollowing = false;
@@ -18,38 +18,67 @@ public class AIMove : MonoBehaviour
     private float followTimer = 0f;
     private float originalSpeed;
 
+    // NEW — lingering follow after losing sight
+    public float lostSightDuration = 1f;
+    private float lostSightTimer = 0f;
+    private bool sawPlayerLastFrame = false;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         originalSpeed = agent.speed;
-        roamTimer = roamDelay; // pick a random point immediately
+        roamTimer = roamDelay;
     }
 
     void Update()
     {
         bool seesPlayer = false;
 
+        // Vision check
         if (target != null)
         {
             Vector3 direction = target.position - transform.position;
+
             if (direction.magnitude <= sightRange)
             {
-                // Raycast to see if something is blocking the view
-                if (!Physics.Raycast(transform.position + Vector3.up, direction.normalized, out RaycastHit hit, sightRange) || hit.transform == target)
+                if (!Physics.Raycast(transform.position + Vector3.up, direction.normalized, out RaycastHit hit, sightRange)
+                    || hit.transform == target)
                 {
                     seesPlayer = true;
                 }
             }
         }
 
-        // Key press to start following
+        // -------------------------------
+        // NEW: Handle lingering follow
+        // -------------------------------
+        if (seesPlayer)
+        {
+            lostSightTimer = 0f;          // reset timer when player seen
+            sawPlayerLastFrame = true;
+        }
+        else if (sawPlayerLastFrame)
+        {
+            lostSightTimer += Time.deltaTime;
+
+            if (lostSightTimer < lostSightDuration)
+            {
+                seesPlayer = true;       // artificially continue "seeing" the player
+            }
+            else
+            {
+                sawPlayerLastFrame = false;
+            }
+        }
+
+        // Key press follow
         if (Keyboard.current[keyToFollow].wasPressedThisFrame)
         {
             isFollowing = true;
-            followTimer = 0f; // reset follow timer
+            followTimer = 0f;
         }
 
-        // Follow player if key pressed OR if AI sees player
+        // Follow if key-following OR sees player (including linger follow)
         if (isFollowing || seesPlayer)
         {
             followTimer += Time.deltaTime;
@@ -60,7 +89,6 @@ public class AIMove : MonoBehaviour
                 agent.speed = followSpeed;
             }
 
-            // Only stop following if it was the key-initiated follow AND duration passed
             if (isFollowing && followTimer >= followDuration)
             {
                 agent.speed = originalSpeed;
@@ -69,7 +97,7 @@ public class AIMove : MonoBehaviour
         }
         else
         {
-            // Random roaming
+            // Roaming
             roamTimer += Time.deltaTime;
             if ((!agent.pathPending && agent.remainingDistance < 0.5f) || roamTimer >= roamDelay)
             {
@@ -80,7 +108,6 @@ public class AIMove : MonoBehaviour
         }
     }
 
-    // Get a random point on the NavMesh within a radius
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layerMask)
     {
         Vector3 randDirection = Random.insideUnitSphere * dist + origin;
@@ -90,6 +117,6 @@ public class AIMove : MonoBehaviour
             return navHit.position;
         }
 
-        return origin; // fallback
+        return origin;
     }
 }
