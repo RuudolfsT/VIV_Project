@@ -23,6 +23,8 @@ public class AIMove : MonoBehaviour
     private float lostSightTimer = 0f;
     private bool sawPlayerLastFrame = false;
 
+    public Animator animator;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -106,6 +108,9 @@ public class AIMove : MonoBehaviour
                 roamTimer = 0f;
             }
         }
+
+        float currentSpeed = new Vector3(agent.velocity.x, 0, agent.velocity.z).magnitude;
+        animator.SetFloat("Speed", currentSpeed);
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layerMask)
