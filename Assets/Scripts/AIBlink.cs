@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class ToggleVisiblePass : MonoBehaviour
+public class AIBlink : MonoBehaviour
 {
     public ScriptableRendererFeature objectVisibleFeature;
 

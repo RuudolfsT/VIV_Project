@@ -231,6 +231,71 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &190698853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190698855}
+  - component: {fileID: 190698854}
+  - component: {fileID: 190698856}
+  m_Layer: 0
+  m_Name: GameOverManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &190698854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190698853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33bc0ca54b14ee445adc45e00ad60b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProximityGameOver
+  player: {fileID: 1063312548}
+  enemy: {fileID: 1454607084}
+  triggerDistance: 2
+  cam: {fileID: 1176030493}
+  aiBlinkScript: {fileID: 1454607082}
+--- !u!4 &190698855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190698853}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.59081, y: 0.5, z: -8.05275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &190698856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190698853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e50f005e0161146b664458ec916a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  normalTarget: {fileID: 1176030486}
+  smoothSpeed: 3
+  focusOffset: {x: 0, y: 1.5, z: 0}
 --- !u!4 &196160468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cfcac9904f9f91149a9d5172023d223b, type: 3}
@@ -1647,6 +1712,7 @@ GameObject:
   - component: {fileID: 1176030490}
   - component: {fileID: 1176030491}
   - component: {fileID: 1176030492}
+  - component: {fileID: 1176030493}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1818,6 +1884,21 @@ MonoBehaviour:
   triggerDistance: 10
   shakeStrength: 0.29
   shakeSpeed: 20
+--- !u!114 &1176030493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176030485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e50f005e0161146b664458ec916a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  normalTarget: {fileID: 1063312548}
+  smoothSpeed: 3
+  focusOffset: {x: 0, y: 2.5, z: 0}
 --- !u!1 &1274287157 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c759e78e672a89e488abc1affa2c99de, type: 3}
@@ -8270,3 +8351,4 @@ SceneRoots:
   - {fileID: 1849020571}
   - {fileID: 1390434119}
   - {fileID: 1087390692}
+  - {fileID: 190698855}
