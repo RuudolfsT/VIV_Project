@@ -11,6 +11,7 @@ public class AIMove : MonoBehaviour
     public float followDuration = 5f;
     public float sightRange = 10f;
     public float followSpeed = 6f;
+    public float eyeHeight = 1.5f; // ai ir lidojoss objekts, tapec biezi vien pazaude redzi par speletaju (japazemina "acu" augstums)
 
     private NavMeshAgent agent;
     private bool isFollowing = false;
@@ -43,7 +44,9 @@ public class AIMove : MonoBehaviour
 
             if (direction.magnitude <= sightRange)
             {
-                if (!Physics.Raycast(transform.position + Vector3.up, direction.normalized, out RaycastHit hit, sightRange)
+                Vector3 eyePos = transform.position + Vector3.up * eyeHeight;
+
+                if (!Physics.Raycast(eyePos, direction.normalized, out RaycastHit hit, sightRange)
                     || hit.transform == target)
                 {
                     seesPlayer = true;
