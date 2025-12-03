@@ -9,7 +9,7 @@ public class EnemyProximityGameOver : MonoBehaviour
     public AIBlink aiBlinkScript;
 
     private bool gameOverTriggered = false;
-
+    public GameObject restartButton;
     void Update()
     {
         if (gameOverTriggered) return;
@@ -20,6 +20,14 @@ public class EnemyProximityGameOver : MonoBehaviour
         {
             gameOverTriggered = true;
             TriggerGameOver();
+        }
+    }
+
+    void Start()
+    {
+        if (restartButton != null)
+        {
+            restartButton.SetActive(false);
         }
     }
 
@@ -35,6 +43,7 @@ public class EnemyProximityGameOver : MonoBehaviour
             aiBlinkScript.objectVisibleFeature.SetActive(true);
         }
 
+        restartButton.SetActive(true);
 
         MeshRenderer renderer = enemy.GetComponent<MeshRenderer>();
         if (renderer != null)
@@ -45,11 +54,16 @@ public class EnemyProximityGameOver : MonoBehaviour
         Vector3 lookDirection = player.position - enemy.position;
         lookDirection.y = 0;
         if (lookDirection != Vector3.zero)
+        {
             enemy.rotation = Quaternion.LookRotation(lookDirection);
+        }
 
 
         Debug.Log("GAME OVER: Enemy caught the player!");
         cam.FocusOnEnemy(enemy);
         Time.timeScale = 0f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
