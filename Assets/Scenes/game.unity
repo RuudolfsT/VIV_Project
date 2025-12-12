@@ -2596,6 +2596,7 @@ GameObject:
   - component: {fileID: 1218248838}
   - component: {fileID: 1218248837}
   - component: {fileID: 1218248836}
+  - component: {fileID: 1218248841}
   m_Layer: 0
   m_Name: WinArea
   m_TagString: Untagged
@@ -2708,6 +2709,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218248841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218248835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105b0b0d0c87edf48872bbc198f170ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameTimer
+  timerText: {fileID: 90926101}
 --- !u!1 &1220388675
 GameObject:
   m_ObjectHideFlags: 0
@@ -4519,7 +4533,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.26
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4983,7 +4997,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 3
     radius:
-      value: 17.31
+      value: 55.6
       mode: 0
       spread: 0
       speed:
@@ -5102,7 +5116,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9008,7 +9022,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.38066, y: 1.53, z: -0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -9207,6 +9221,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c759e78e672a89e488abc1affa2c99de, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c759e78e672a89e488abc1affa2c99de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
