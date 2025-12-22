@@ -9366,7 +9366,7 @@ GameObject:
   - component: {fileID: 449699953}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: NoBlink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16343,6 +16343,53 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: c759e78e672a89e488abc1affa2c99de, type: 3}
+--- !u!1 &709574793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 709574795}
+  - component: {fileID: 709574794}
+  m_Layer: 0
+  m_Name: LightBlinkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &709574794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709574793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0238dff03b2fe1942a88b66da6c230c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightBlinkManager
+  minBlinkTime: 0.1
+  maxBlinkTime: 1.5
+  ignoreTag: NoBlink
+--- !u!4 &709574795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709574793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -108.94514, y: 2.13239, z: -144.23668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &710970063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18762,7 +18809,7 @@ GameObject:
   - component: {fileID: 827709910}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: NoBlink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55188,3 +55235,4 @@ SceneRoots:
   - {fileID: 1118969811}
   - {fileID: 725932302}
   - {fileID: 1217660598}
+  - {fileID: 709574795}
