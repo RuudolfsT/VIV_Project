@@ -16,6 +16,10 @@ public class PlayerMovement_New : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private bool isMoving;
+
+    public bool IsGrounded => isGrounded;
+    public Vector2 MoveInput { get; private set; }
+
     private Vector3 lastPosition;
 
     // Input System actions
@@ -62,8 +66,8 @@ public class PlayerMovement_New : MonoBehaviour
         }
 
         // Movement
-        Vector2 input = moveAction.ReadValue<Vector2>();
-        Vector3 move = transform.right * input.x + transform.forward * input.y;
+        MoveInput = moveAction.ReadValue<Vector2>();
+        Vector3 move = transform.right * MoveInput.x + transform.forward * MoveInput.y;
         controller.Move(move * speed * Time.deltaTime);
 
         // Jump

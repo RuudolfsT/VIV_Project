@@ -7,6 +7,9 @@ public class EnemyProximityGameOver : MonoBehaviour
     public float triggerDistance = 2.0f;
     public CameraController cam;     // reference to your camera controller
     public AIBlink aiBlinkScript;
+    public AudioSource audioSource;
+    public AudioClip gameOverClip;
+    public float headHeightOffset = 1.6f;
 
     private bool gameOverTriggered = false;
     public GameObject restartButton;
@@ -33,6 +36,11 @@ public class EnemyProximityGameOver : MonoBehaviour
 
     void TriggerGameOver()
     {
+        if (audioSource != null && gameOverClip != null)
+        {
+            audioSource.PlayOneShot(gameOverClip);
+        }
+
         if (aiBlinkScript != null)
         {
             aiBlinkScript.enabled = false;
@@ -59,8 +67,10 @@ public class EnemyProximityGameOver : MonoBehaviour
         }
 
 
-        Debug.Log("GAME OVER: Enemy caught the player!");
-        cam.FocusOnEnemy(enemy);
+        GameObject headTarget = new GameObject("EnemyHeadTarget");
+        headTarget.transform.position = enemy.position + Vector3.up * headHeightOffset;
+
+        cam.FocusOnEnemy(headTarget.transform);
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
