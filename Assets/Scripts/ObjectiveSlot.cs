@@ -1,10 +1,14 @@
-using UnityEngine;
-
+﻿using UnityEngine;
+using System.Collections.Generic;
 public class ObjectiveSlot : MonoBehaviour
 {
     public string requiredItemName;
-    public GameObject objectToOpen; // nakama "atslega", kuru iespawnot
-    public GameObject finalObjective; // pedejie varti, kam japazud
+    public bool changePoseOnCorrectItem;
+    public Transform objectToMove;
+    public Transform openPose;
+
+    public List<GameObject> objectsToOpen = new List<GameObject>(); // nakamie objectives, ko iespawnot
+    public List<GameObject> objectsToHide = new List<GameObject>(); // // objective, kam butu japazud
 
     public void TryActivate(Pickup pickup)
     {
@@ -22,15 +26,25 @@ public class ObjectiveSlot : MonoBehaviour
             pickup.RemoveHeldObject();
             Destroy(held);
 
-            if (objectToOpen != null)
+            foreach (GameObject obj in objectsToOpen)
             {
-                objectToOpen.SetActive(true);
-
+                if (obj != null)
+                    obj.SetActive(true);
             }
 
-            if (finalObjective != null)
+            foreach (GameObject obj in objectsToHide)
             {
-                Destroy(finalObjective);
+                if (obj != null)
+                    Destroy(obj);
+            }
+
+            // durvis atveras
+            if (changePoseOnCorrectItem && objectToMove && openPose)
+            {
+                objectToMove.SetPositionAndRotation(
+                    openPose.position,
+                    openPose.rotation
+                );
             }
 
             //Destroy(gameObject); // ja ir nepieciesams, ka objektam japazud, piemeram, nakama atslega ir pieejama aiz si objekta
