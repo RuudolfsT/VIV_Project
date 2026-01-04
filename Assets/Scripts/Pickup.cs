@@ -27,7 +27,6 @@ public class Pickup : MonoBehaviour
         {
             // megina aktivizet objektu
             ObjectiveSlot slot = hit.collider.GetComponent<ObjectiveSlot>();
-            Debug.Log(slot);
             if (slot != null)
             {
                 slot.TryActivate(this);

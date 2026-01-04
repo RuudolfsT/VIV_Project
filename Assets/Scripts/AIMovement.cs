@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
@@ -19,7 +19,7 @@ public class AIMove : MonoBehaviour
     private float followTimer = 0f;
     private float originalSpeed;
 
-    // NEW � lingering follow after losing sight
+    // NEW — lingering follow after losing sight
     public float lostSightDuration = 1f;
     private float lostSightTimer = 0f;
     private bool sawPlayerLastFrame = false;
@@ -79,23 +79,37 @@ public class AIMove : MonoBehaviour
         {
             isFollowing = true;
             followTimer = 0f;
+            agent.speed = followSpeed;
         }
 
         // Follow if key-following OR sees player (including linger follow)
         if (isFollowing || seesPlayer)
         {
+            agent.speed = followSpeed;
+
             followTimer += Time.deltaTime;
 
-            if (target != null)
+            if (NavMesh.SamplePosition(target.position, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
-                agent.SetDestination(target.position);
-                agent.speed = followSpeed;
+                agent.SetDestination(hit.position);
+            }
+            else
+            {
+                // Player is unreachable, stop following
+                isFollowing = false;
+                sawPlayerLastFrame = false;
             }
 
             if (isFollowing && followTimer >= followDuration)
             {
                 agent.speed = originalSpeed;
                 isFollowing = false;
+            }
+
+            if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
+            {
+                isFollowing = false;
+                sawPlayerLastFrame = false;
             }
         }
         else
