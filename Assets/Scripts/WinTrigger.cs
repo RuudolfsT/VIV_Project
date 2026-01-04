@@ -18,8 +18,6 @@ public class WinTrigger : MonoBehaviour
             // Unlock cursor to click UI
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-
-            Debug.Log("YOU WIN!");
         }
     }
 }

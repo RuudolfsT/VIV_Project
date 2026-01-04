@@ -12,7 +12,6 @@ public class PlayerInventory : MonoBehaviour
     public void PickItem(string itemName)
     {
         currentItem = itemName;
-        Debug.Log("Picked up: " + itemName);
     }
 
     public void ClearItem()

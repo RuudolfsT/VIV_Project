@@ -54,9 +54,7 @@ public class AIMove : MonoBehaviour
             }
         }
 
-        // -------------------------------
-        // NEW: Handle lingering follow
-        // -------------------------------
+        // lingering follow
         if (seesPlayer)
         {
             lostSightTimer = 0f;          // reset timer when player seen

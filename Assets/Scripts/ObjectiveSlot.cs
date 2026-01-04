@@ -25,8 +25,6 @@ public class ObjectiveSlot : MonoBehaviour
 
             if (id.itemName == requiredItemName)
             {
-                Debug.Log("Correct item inserted: " + requiredItemName);
-
                 // Remove item from hand
                 pickup.RemoveHeldObject(); 
                 Destroy(held);
