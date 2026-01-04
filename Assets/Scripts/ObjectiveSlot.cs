@@ -9,23 +9,54 @@ public class ObjectiveSlot : MonoBehaviour
 
     public List<GameObject> objectsToOpen = new List<GameObject>(); // nakamie objectives, ko iespawnot
     public List<GameObject> objectsToHide = new List<GameObject>(); // // objective, kam butu japazud
-
+    public bool IsFinalObjective = false;
     public void TryActivate(Pickup pickup)
     {
-        GameObject held = pickup.GetHeldObject();
-        if (held == null) return;
-
-        ItemID id = held.GetComponent<ItemID>();
-        if (id == null) return;
-
-        if (id.itemName == requiredItemName)
+        GameObject held = null;
+        ItemID id = null;
+        if (!IsFinalObjective)
         {
-            Debug.Log("Correct item inserted: " + requiredItemName);
+            held = pickup.GetHeldObject();
+            if (held == null) return;
 
-            // Remove item from hand
-            pickup.RemoveHeldObject();
-            Destroy(held);
+            id = held.GetComponent<ItemID>();
+            if (id == null) return;
 
+
+            if (id.itemName == requiredItemName)
+            {
+                Debug.Log("Correct item inserted: " + requiredItemName);
+
+                // Remove item from hand
+                pickup.RemoveHeldObject(); 
+                Destroy(held);
+
+                foreach (GameObject obj in objectsToOpen)
+                {
+                    if (obj != null)
+                        obj.SetActive(true);
+                }
+
+                foreach (GameObject obj in objectsToHide)
+                {
+                    if (obj != null)
+                        Destroy(obj);
+                }
+
+                // durvis atveras
+                if (changePoseOnCorrectItem && objectToMove && openPose)
+                {
+                    objectToMove.SetPositionAndRotation(
+                        openPose.position,
+                        openPose.rotation
+                    );
+                }
+
+                //Destroy(gameObject); // ja ir nepieciesams, ka objektam japazud, piemeram, nakama atslega ir pieejama aiz si objekta
+            }
+        }
+        else
+        {
             foreach (GameObject obj in objectsToOpen)
             {
                 if (obj != null)
@@ -37,17 +68,6 @@ public class ObjectiveSlot : MonoBehaviour
                 if (obj != null)
                     Destroy(obj);
             }
-
-            // durvis atveras
-            if (changePoseOnCorrectItem && objectToMove && openPose)
-            {
-                objectToMove.SetPositionAndRotation(
-                    openPose.position,
-                    openPose.rotation
-                );
-            }
-
-            //Destroy(gameObject); // ja ir nepieciesams, ka objektam japazud, piemeram, nakama atslega ir pieejama aiz si objekta
         }
     }
 }

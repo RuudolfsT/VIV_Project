@@ -22,12 +22,12 @@ public class Pickup : MonoBehaviour
     {
         Vector3 rayOrigin = Camera.main.transform.position;
         Vector3 rayDirection = Camera.main.transform.forward;
-
         RaycastHit hit;
         if (Physics.SphereCast(rayOrigin, sphereRadius, rayDirection, out hit, interactRange))
         {
             // megina aktivizet objektu
             ObjectiveSlot slot = hit.collider.GetComponent<ObjectiveSlot>();
+            Debug.Log(slot);
             if (slot != null)
             {
                 slot.TryActivate(this);
